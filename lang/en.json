@@ -1,0 +1,34 @@
+{
+
+    "conditional-visibility.settings.autoStealth.name": "Auto hide on stealth rolls",
+    "conditional-visibility.settings.autoStealth.hint": "On supported game systems, set the hidden condition on a token's stealth roll",
+
+    "conditional-visibility.popup.dismissuntilupdated": "Dismiss until updated",
+    "conditional-visibility.popup.close": "Close",
+    "conditional-visibility.popup.version0910.1":"A compendium has is now part of this module, for those who wish to use macros instead of conditions icons to apply conditions, or to apply them in bulk.",
+    "conditional-visibility.popup.version0910.2":"There is also a script that makes an effort to migrate tokens from the Foundry 0.6.x model to the Foundry 0.7 model, though you may still have to re-apply some effects",
+    "conditional-visibility.popup.version0910.3":"Using these scripts as macros will require the installation of the Furnace module, as they are asynchronous",
+
+    "conditional-visibility.help.readmeat": "More instructions can be found at the",
+    "conditional-visibility.help.gamesystem": "Game System",
+    "conditional-visibility.help.hasStealth": "Has Stealth",
+    "conditional-visibility.help.availableconditions": "Available Conditions",
+
+    "conditional-visibility.unsupportedsystem":"Conditional Visibility does not support the system {system}, as it has its own condition mechanism.  Issues (especially pull requests) are welcomed",
+    "conditional-visibility.ExtraSenseInstructions": "Additional senses that may enhance vision",
+    "conditional-visibility.seeinvisible":"Sees Invisible",
+    "conditional-visibility.blindsight": "Blindsight",
+    "conditional-visibility.tremorsense":"Tremorsense",
+    "conditional-visibility.devilssight":"Devil's Sight",
+    "conditional-visibility.truesight":"Truesight",
+
+    "conditional-visibility.invisible":"Invisible",
+    "conditional-visibility.obscured":"Obscured",
+    "conditional-visibility.indarkness":"In Darkness",
+    "conditional-visibility.hidden":"Hidden",
+    
+    "conditional-visibility.stealth.not.supported": "ConditionalVisilbity does not support the hidden condition/stealth for {sysid}",
+    "conditional-visibility.currentstealth":"Current Stealth",
+    "conditional-visibility.stealthroll":"Stealh Roll",
+    "conditional-visibility.stealthrolldescription":"This value will be compared with passive perception as long is the token is hiding.  Non-numeric entries will result in the initial value being taken"
+}

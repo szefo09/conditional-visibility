@@ -1,0 +1,28 @@
+{
+
+    "conditional-visibility.settings.autoStealth.name": "은신 굴림시 자동 숨김",
+    "conditional-visibility.settings.autoStealth.hint": "지원되는 게임 시스템에서 은신 굴림시 토큰을 은신 상태로 설정한다.",
+
+    "conditional-visibility.help.readmeat": "자세한 설명은 다음에서 확인할 수 있습니다 :",
+    "conditional-visibility.help.gamesystem": "게임 시스템",
+    "conditional-visibility.help.hasStealth": "은신",
+    "conditional-visibility.help.availableconditions": "사용 가능한 상태 이상",
+
+    "conditional-visibility.unsupportedsystem":"Conditional Visibility는 고유 상태이상 구조를 보유하기 때문에 {system} 시스템을 보조하지 않습니다. 이슈(특히 pull requests)는 환영입니다.",
+    "conditional-visibility.ExtraSenseInstructions": "Additional senses that may enhance vision",
+    "conditional-visibility.seeinvisible":"투명체 감지",
+    "conditional-visibility.blindsight": "맹안 시야",
+    "conditional-visibility.tremorsense":"진동 감각",
+    "conditional-visibility.devilssight":"악마의 시야",
+    "conditional-visibility.truesight":"진시야",
+
+    "conditional-visibility.invisible":"투명",
+    "conditional-visibility.obscured":"가려짐",
+    "conditional-visibility.indarkness":"암흑",
+    "conditional-visibility.hidden":"은신",
+    
+    "conditional-visibility.stealth.not.supported": "ConditionalVisilbity가 {sysid}에 대한 은신 상태/은신을 지원하지 않습니다.",
+    "conditional-visibility.currentstealth":"현재 은신",
+    "conditional-visibility.stealthroll":"은신 굴림",
+    "conditional-visibility.stealthrolldescription":"토큰이 은신된 동안 이 값은 상시 감지 값과 비교된다. 비수치적 항목은 토큰의 초기 값을 사용한다."
+}

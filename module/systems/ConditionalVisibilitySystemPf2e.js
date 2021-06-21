@@ -1,48 +1,32 @@
-import { MODULE_NAME, StatusEffect } from '../Constants';
-import { DefaultConditionalVisibilitySystem } from "./DefaultConditionalVisibilitySystem";
-
+import { i18n } from "../../conditional-visibility.js";
+const MODULE_NAME = "conditional-visibility";
+import { DefaultConditionalVisibilitySystem } from "./DefaultConditionalVisibilitySystem.js";
 /**
  * Conditional visibility system for pf2e.  Uses only the built in pf2e invisibility.
  */
 export class ConditionalVisibilitySystemPf2e extends DefaultConditionalVisibilitySystem {
-
-    static PF2E_BASE_EFFECTS = new Array<StatusEffect> (
-        { 
-            id: MODULE_NAME + '.invisible',
-            visibilityId: 'invisible',
-            label: 'CONVIS.invisible',
-            icon:'systems/pf2e/icons/conditions/invisible.png'
-        }
-    );
-
     /**
      * Use the base conditions, plus set up the icon for the "hidden" condition
      */
-    protected effects(): Array<StatusEffect> {
+    effects() {
         return ConditionalVisibilitySystemPf2e.PF2E_BASE_EFFECTS;
     }
-
-
-    public effectsFromUpdate(update: any):any {
+    effectsFromUpdate(update) {
         return update.actorData?.items;
     }
-
-    public getEffectByIcon(effect:StatusEffect|string):StatusEffect {
+    getEffectByIcon(effect) {
         //@ts-ignore
         return this.effectsByIcon().get(effect.img);
-
     }
-
-    public gameSystemId() {
+    gameSystemId() {
         return "pf2e";
     }
-    
     /**
      * Tests whether a token is invisible, and if it can be seen.
      * @param target the token being seen (or not)
      * @param visionCapabilities the sight capabilities of the sight layer
      */
-    protected seeInvisible(target:Token, visionCapabilities:any): boolean {
+    seeInvisible(target, visionCapabilities) {
         const invisible = this.hasStatus(target, 'invisible', 'invisible.png');
         if (invisible === true) {
             if (visionCapabilities.seeinvisible !== true) {
@@ -52,3 +36,9 @@ export class ConditionalVisibilitySystemPf2e extends DefaultConditionalVisibilit
         return true;
     }
 }
+ConditionalVisibilitySystemPf2e.PF2E_BASE_EFFECTS = new Array({
+    id: MODULE_NAME + '.invisible',
+    visibilityId: 'invisible',
+    label: MODULE_NAME + '.invisible',
+    icon: 'systems/pf2e/icons/conditions/invisible.png'
+});

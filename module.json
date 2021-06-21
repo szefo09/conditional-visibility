@@ -1,0 +1,56 @@
+{
+  "name": "conditional-visibility",
+  "title": "Conditional Visibility",
+  "description": "Hide tokens from some players, but not others, based on the senses the players have. Uses unknown, newspaper, and foggy icons made by <a href=\"https://www.flaticon.com/authors/freepik\" title=\"Freepik\">Freepik</a>, from <a href=\"https://www.flaticon.com/\" title=\"Flaticon\"> www.flaticon.com</a>. Moon icon made by <a href=\"https://www.flaticon.com/authors/iconixar\" title=\"iconixar\">iconixar</a> from <a href=\"https://www.flaticon.com/\" title=\"Flaticon\"> www.flaticon.com</a>",
+  "author": "Greg Ludington",
+  "authors": [],
+  "url": "https://github.com/szefo09/conditional-visibility",
+  "readme": "https://github.com/szefo09/conditional-visibility/blob/master/README.md",
+  "changelog": "https://github.com/szefo09/conditional-visibility/blob/master/CHANGELOG.md",
+  "flags": {},
+  "version": "v0.2.4",
+  "minimumCoreVersion": "0.7.6",
+  "compatibleCoreVersion": "0.8.7",
+  "scripts": [],
+  "esmodules": [
+    "conditional-visibility.js"
+  ],
+  "styles": [
+    "templates/conditional-visibility.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "ko",
+      "name": "Korean",
+      "path": "lang/ko.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "Conditional Visibility",
+      "label": "Conditional Visibility",
+      "path": "./packs/visibility-scripts.db",
+      "module": "world",
+      "entity": "Macro",
+      "lang": [],
+      "private": false
+    }
+  ],
+  "system": [],
+  "dependencies": [
+    {
+      "name": "socketlib",
+      "type": "module"
+    }
+  ],
+  "socket": true,
+  "manifest": "https://github.com/szefo09/conditional-visibility/releases/latest/download/module.json",
+  "download": "https://github.com/szefo09/conditional-visibility/releases/download/v0.2.4/conditional-visibility-v0.2.4.zip",
+  "protected": false,
+  "coreTranslation": false
+}
