@@ -44,6 +44,9 @@ export class ConditionalVisibility {
             }
             return srcTokens;
         };
+        this.actorUpdates = [];
+        this.sceneUpdates = [];
+        this.debouncedUpdate = debounce(async ()=> await this.applyChanges(),300);
         this._draw = async () => {
             await this._sightLayer.initialize();
             await this._sightLayer.refresh();
@@ -225,27 +228,50 @@ export class ConditionalVisibility {
                 }
             });
     }
-    async onCreateActiveEffect(effect) {
+    onCreateActiveEffect(effect) {
         if (!game.user.isGM || !(effect.parent instanceof CONFIG.Actor.documentClass)) {
             return true;
         }
         const status = this._conditionalVisibilitySystem.getEffectByIcon(effect);
         if (status) {
-            await effect.parent.setFlag(MODULE_NAME, status.visibilityId, true)
-            await socket.executeForEveryone(ConditionalVisibility.refresh)
+            let flag = "flags.conditional-visibility."+status.visibilityId;
+            if(effect.parent.isToken){
+                ConditionalVisibility.INSTANCE.sceneUpdates.push({_id:effect.parent.parent.id,["actorData."+flag]:true})
+            }else{
+                ConditionalVisibility.INSTANCE.actorUpdates.push({_id:effect.parent.id,[flag]:true})
+            }
+            this.debouncedUpdate();
         }
     }
-    async onDeleteActiveEffect(effect) {
-        if (!game.user.isGM || !(effect.parent instanceof CONFIG.Actor.documentClass)) {
-            return true;
-        }
-        const status = this._conditionalVisibilitySystem.getEffectByIcon(effect);
-        if (status) {
-            await effect.parent.unsetFlag(MODULE_NAME, status.visibilityId)
-            await socket.executeForEveryone(ConditionalVisibility.refresh)
-        }
 
+    onDeleteActiveEffect(effect) {
+        if (!game.user.isGM || !(effect.parent instanceof CONFIG.Actor.documentClass)) {
+            return true;
+        }
+        const status = this._conditionalVisibilitySystem.getEffectByIcon(effect);
+        if (status) {
+            let flag = "flags.conditional-visibility."+status.visibilityId;
+            if(effect.parent.isToken){
+                ConditionalVisibility.INSTANCE.sceneUpdates.push({_id:effect.parent.parent.id,["actorData."+flag]:false})
+            }else{
+                ConditionalVisibility.INSTANCE.actorUpdates.push({_id:effect.parent.id,[flag]:false})
+            }
+            this.debouncedUpdate();
+        }
     }
+
+    async applyChanges(){ 
+        if (ConditionalVisibility.INSTANCE.sceneUpdates.length){
+            await getCanvas().scene.updateEmbeddedDocuments("Token", ConditionalVisibility.INSTANCE.sceneUpdates);
+            ConditionalVisibility.INSTANCE.sceneUpdates.length = 0;
+        } 
+        if (ConditionalVisibility.INSTANCE.actorUpdates.length){
+            await Actor.updateDocuments(ConditionalVisibility.INSTANCE.actorUpdates);
+            ConditionalVisibility.INSTANCE.actorUpdates.length = 0;
+        }
+        await socket.executeForEveryone("refresh");
+    }
+
     // onUpdateToken( token, update, options, userId) {
     //     const effectsFromUpdate = this._conditionalVisibilitySystem.effectsFromUpdate(update);
     //     if (effectsFromUpdate) {
