@@ -41,6 +41,9 @@ export let socket;
 /* Initialize module					*/
 /* ------------------------------------ */
 Hooks.once('init', async function () {
+    if(game.modules.get("levels")?.active){
+        return console.error("Conditional Visibility does not currently work with Levels module. Initialization stopped.");
+    }
     console.log(MODULE_NAME + ' | init ' + MODULE_NAME);
     // Assign custom classes and constants here
     // Register custom module settings
